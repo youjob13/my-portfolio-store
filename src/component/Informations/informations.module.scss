@@ -1,0 +1,258 @@
+$color-informations_1:#333333;
+$color-informations_2:#666666;
+$color-informations_3:#d9e0e3;
+$color-informations_4:#0089cf;
+$color-informations_5:#ffffff;
+$color-informations_6:#f2f9fd;
+$color-informations_7:#e5e5e5;
+
+%title-informations_1 {
+    font-size: 28px;
+    text-transform: uppercase;
+    color:$color-informations_1;
+    font-weight: 700;
+}
+%title-informations_2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: $color-informations_1;
+    font-weight: 700;
+}
+%input {
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid $color-informations_2;
+    padding: 8px 0;
+    margin-right: 24px;
+
+}
+%select {
+    width: 45%;
+    border: none;
+    border-bottom: 1px solid $color-informations_2;
+    padding: 8px 0;
+    color:$color-informations_2;
+    margin-right: 20px;
+
+}
+.informations {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: .2s;
+    transform: translateX(500px);
+    z-index: 99;
+    width: 530px;
+    background-color:$color-informations_5;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+    &PersonalInfo {
+        padding: 30px;
+        h2 {
+            @extend %title-informations_1;
+            margin-bottom: 15px;
+        }
+        form {
+            h3 {
+            @extend %title-informations_2;
+            margin-bottom: 15px;
+            }
+            .informationsInput {
+                width: 100%;
+                display: flex;
+                margin: 8px 0;
+                input,select {
+                    @extend %input;
+                }
+                input[type="address"] {
+                    width: 100%;
+                }
+                select {
+                    @extend %select;
+                }
+            }
+        }
+    }
+    &Notes,
+    &DeliveryMode {
+        margin-bottom: 30px;
+        padding: 0px 30px;
+        h3 {
+            @extend %title-informations_2;
+            margin-bottom: 5px;
+        }
+    }
+    &Notes {
+        input {
+            @extend %input;
+            width: 100%;
+        }
+    }
+    &DeliveryMode {
+        select {
+            @extend %select;
+        }
+    }
+    &Block {
+        margin-bottom: 20px;
+    }
+    &Cart {
+        padding: 30px 30px;
+        background-color:$color-informations_6;
+        h3 {
+            @extend %title-informations_2;
+            margin-bottom: 15px;
+        }
+        &Item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            padding: 10px 0;
+            &:first-child {
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-color: $color-informations_3;
+                    width: 100%;
+                    height: 2px;
+                }
+            }
+            &:before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background-color: $color-informations_3;
+                width: 100%;
+                height: 2px;
+            }
+            &Sum {
+                text-align: center;
+                i {
+                    cursor: pointer;
+                }
+            }
+            img {
+                width: 70px;
+            }
+            &Title {
+                h4 {
+                    color:$color-informations_1;
+                }
+                p {
+                    color:$color-informations_2;
+                    font-size: 14px;
+                }
+            }
+            &Size {
+                font-weight: 600;
+                color:$color-informations_1;
+                span:first-child {
+                    text-transform: uppercase;
+                    margin-right: 15px;
+                }
+                span:nth-child(2) {
+                    padding: 8px;
+                    background-color:$color-informations_3;
+                }
+            }
+            &Price {
+                p {
+                    font-weight: 600;
+                    color:$color-informations_1;
+                }
+            }
+        }
+        &Result {
+            margin: 40px 0;
+            width: 200px;
+            position: relative;
+            right:-270px;
+            h4 {
+                display: inline-block;
+                @extend %title-informations_2;
+            }
+            span {
+                color:$color-informations_2;
+                font-weight: 600;
+            }
+        }
+        &Shipping,
+        &Subtotal {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+    }
+    &PrivatePolicy {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin: 40px 0;
+        input {
+            opacity: 0;
+            visibility: hidden;
+            margin-right: 20px;
+        }
+        label {
+            position: absolute;
+            border:2px solid $color-informations_7;
+            width: 15px;
+            height:15px;
+            // active checkbox
+            &:before {
+                content: '';
+                top:50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                position: absolute;
+                background-color: $color-informations_4;
+                width: 9px;
+                height: 9px;
+            }
+        }
+        p {
+            color:$color-informations_2;
+        }
+        a {
+            color:$color-informations_4;
+            display: inline-block;
+            line-height: 1;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            &:after {
+                display: block;
+                content: "";
+                background-color: $color-informations_4;
+                height: 2px;
+                width: 0%;
+                left: 50%;
+                position: absolute;
+                transition: width .3s ease-in-out;
+                transform: translateX(-50%);
+            }
+            &:hover:after,
+            &:focus:after {
+                width: 100%;
+            }
+        }
+    }
+    &Confirm {
+        text-align: right;
+        border:none;
+        background-color:$color-informations_1;
+        color:$color-informations_5;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        padding: 15px 65px;
+        position: relative;
+        right:-270px;
+    }
+}

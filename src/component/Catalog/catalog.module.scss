@@ -1,0 +1,31 @@
+$text-color-catalog_1:#0089cf;
+$text-color-catalog_2:#c8ced0;
+$text-color-catalog_3:#666666;
+.searchInput {
+    input {
+        margin-top: 60px;
+        width: 100%;
+        font-size: 70px;
+        background: transparent;
+        border: none;
+        color:$text-color-catalog_1;
+        border-bottom: 2px solid $text-color-catalog_2;
+        background-image: url(../../assets//img/search.png);
+        background-position: right;
+        background-repeat: no-repeat;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+.catalog {
+    margin: 0 auto;
+    &Title {
+        color: $text-color-catalog_3;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding:50px 0 30px;
+        font-size: 25px;
+    }
+}
+

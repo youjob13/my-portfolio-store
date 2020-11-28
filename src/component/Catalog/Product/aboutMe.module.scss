@@ -1,0 +1,31 @@
+$color-aboutMe_1:#fff;
+$color-aboutMe_2:#b8b8b8;
+.aboutMe {
+    position: relative;
+    background-color: $color-aboutMe_2;
+    z-index: -2;
+    img {
+        left: 0;
+        top: 0;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    }
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    padding-left:40px;
+    &Title {
+        width: 30%;
+        color:$color-aboutMe_1;
+        h3 {
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 24px;
+        }
+        p {
+            font-weight: 300;
+        }
+    }
+}

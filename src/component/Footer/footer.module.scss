@@ -1,0 +1,111 @@
+$color-footer_1:#0c0d0d;
+$color-footer_2:#666666;
+$color-footer_3:#555656;
+%title-footer {
+    color:$color-footer_2;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.footer {
+        background-color: $color-footer_1;
+        height: 30vh;
+        padding: 30px;
+    &Nav {
+        display: grid;
+        grid-template-columns: 1fr 2fr 2fr 3fr 4fr;
+        column-gap: 20px;
+        &Logo {
+            margin: 0 auto;
+        }
+        nav {
+            ul {
+                line-height: 1.8;
+
+                li {
+                    @extend %title-footer;
+                }
+            }
+
+        }
+        input {
+            margin-top: 25px;
+            border: none;
+            border-bottom: 1px solid $color-footer_3;
+            background-color: transparent;
+            background-image: url(../../assets/img/footer/email.png);
+            background-size: 20px;
+            align-items: center;
+            background-repeat: no-repeat;
+            background-position: left;
+            padding: 5px 0 5px 30px;
+            width: 60%;
+            &::-webkit-input-placeholder {
+                font-weight: bold;
+            }
+        }
+    }
+}
+.socialNetwork {
+    text-align: center;
+    &Link {
+        display: flex;
+        justify-content: center;
+        i {
+            margin-right: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            color: $color-footer_3;
+            border: 1px solid $color-footer_3;
+            width: 45px;
+            height: 45px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+.copyright {
+    text-align: center;
+    margin-top: 70px;
+    color:$color-footer_2;
+    font-size: 13px;
+}
+@media (max-width:1000px) {
+    .footer {
+        height: 40vh;
+        &Nav {
+            grid-template-columns: 1fr 2fr 2fr 3fr;
+        }
+    }
+    .socialNetwork {
+        padding-top: 30px;
+        grid-row: 2;
+        grid-column: 3;
+    }
+    .copyright {
+        margin-top: 20px;
+    }
+}
+@media (max-width:768px) {
+    .footer {
+        height: 50vh;
+        &Nav {
+            grid-template-columns: 1fr 2fr 2fr 3fr;
+        }
+    }
+
+    .socialNetwork {
+        padding-top: 30px;
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    .copyright {
+        margin-top: 20px;
+    }
+}

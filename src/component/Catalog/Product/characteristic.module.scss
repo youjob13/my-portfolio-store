@@ -1,0 +1,287 @@
+$color-characteristic_1:#f6f6f6;
+$color-characteristic_2:#e4e4e4;
+$color-characteristic_3:#666666;
+$color-characteristic_4:#0089cf;
+$color-characteristic_5:#ffffff;
+$color-characteristic_6:#333333;
+%title-type_1 {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+%title-type_2 {
+    font-size: 15px;
+    font-weight: 400;
+}
+%title-type_3 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+%select {
+    width: 140px;
+    border: 2px solid $color-characteristic_2;
+    padding: 15px 50px 15px 15px;
+    color: $color-characteristic_6;
+    @extend %title-type_3;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+}
+
+%button {
+    width: 140px;
+    padding: 18px;
+    background-color: $color-characteristic_6;
+    color: $color-characteristic_5;
+    border: none;
+    margin-left: 15px;
+    @extend %title-type_3;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+}
+
+%title-type_4 {
+    color: $color-characteristic_3;
+    text-transform: uppercase;
+    font-size: 17px;
+}
+.radio {
+    opacity: 0;
+    visibility: hidden;
+}
+.characteristic {
+    height: 100vh;
+    background-color: #f6f6f6;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    align-items: center;
+    column-gap: 40px;
+    padding: 0 40px;
+    &Story {
+        position: relative;
+        z-index: 1;
+        h3 {
+            @extend %title-type_4;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            color:$color-characteristic_6;
+        }
+        p {
+            color: $color-characteristic_3;
+            font-weight: 400;
+        }
+    }
+    &Benefits {
+        position: relative;
+        z-index: 1;
+        margin-top: 60px;
+        h3 {
+            @extend %title-type_4;
+            margin-bottom: 15px;
+        }
+        h2 {
+            font-size: 22px;
+            color:$color-characteristic_6;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        p {
+            color: $color-characteristic_3;
+            font-weight: 400;
+        }
+    }
+    &Image {
+        display: flex;
+        justify-content: center;
+        img {
+            width: 100%;
+       } 
+    }
+    &Product {
+        background-color:$color-characteristic_5;
+        z-index: 1;
+        margin: 0 auto;
+        border: 4px solid $color-characteristic_2;
+        padding: 20px 30px;
+        &Mini {
+            &Image {
+                width: 80%;
+                margin: 40px auto;
+                height: 140px;
+               img {    
+                width: 100%;
+               } 
+            }
+            &Select {
+                display: flex;
+                margin: 15px 0;
+            }
+            &Color {
+                display: flex;
+                p {
+                    @extend %title-type_3;
+                    color: $color-characteristic_4;
+                    margin-right: 5px;
+                    cursor: pointer;
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+            &Price {
+                display: flex;
+                justify-content: space-between;
+                p {
+                    @extend %title-type_3;
+                    font-weight: 700;
+                }
+            }
+            &Size {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 15px;
+                select {
+                    @extend %select;
+                }
+                button {
+                    @extend %button;
+                }
+            }
+        }
+        h2 {
+            @extend %title-type_1;
+        }
+        h3 {
+            @extend %title-type_2;
+            margin: 15px 0;
+            color:$color-characteristic_3;
+        }
+    }
+}
+@media (max-width:1200px) {
+    .characteristic {
+        &Story,
+        &Benefits {
+            h3 {
+                font-size: 15px;
+            }
+
+            h2 {
+                font-size: 17px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+        &Product {
+            &Mini {
+                line-height: 1;
+                h2 {
+                    font-size: 18px;
+                }
+                h3 {
+                    font-size: 15px;
+                }
+                &Color {
+                    display: block;
+                    
+                    p {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1000px) {
+    .characteristic {
+        grid-template-columns:1fr 1fr;
+        &Image {
+            display: none;
+        }
+    }
+}
+@media (max-width: 768px) {
+    .characteristic {
+        &Story,
+        &Benefits {
+            h3 {
+                margin-bottom: 10px;
+            }
+            h2 {
+                margin-bottom: 10px;
+            }
+        }
+        &Benefits {
+            margin-top: 15px;
+        }
+        &Product {
+            width: 200px;
+            &Mini {
+                select {
+                    padding: 13px 20px;
+                }
+                button {
+                    padding: 10px 20px;
+                }
+                select,
+                button {
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 665px) {
+    .characteristic {
+        padding: 50px 40px;
+        height:100%;
+        grid-template-columns: 1fr;
+        &Story,
+        &Benefits {
+            h3 {
+                margin-bottom: 20px;
+            }
+            h2 {
+                margin-bottom: 10px;
+            }
+        }
+
+        &Benefits {
+            margin-top: 40px;
+        }
+        &Product {
+            margin-top: 40px;            
+            height: 300px;
+            &Mini {
+                img {
+                    width: 60%;
+                }
+                select {
+                    padding: 13px 20px;
+                }
+
+                button {
+                    padding: 10px 20px;
+                }
+
+                select,
+                button {
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}

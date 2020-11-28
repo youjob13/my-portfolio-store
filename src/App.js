@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import styles from "./App.module.scss";
+import Header from "./component/Header/Header";
+import MainPage from "./component/MainPage/MainPage";
+import CatalogFootWear from "./component/Catalog/CatalogFootWear";
+import Product from "./component/Catalog/Product/Product";
+import Footer from "./component/Footer/Footer";
+import { Redirect, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import Preloader from "./component/common/Preloader/Preloader";
+import { getGoods } from "./store/reducers/goods";
 
-function App() {
+const styles1 = styles.App + " " + styles.cartDeActive;
+const styles2 = styles.App + " " + styles.cartActive;
+
+const App = (props) => {
+  useEffect(() => {
+    props.getGoods();
+  }, []);
+  if (props.goods.length === 0) return <Preloader />;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={props.isCart ? styles2 : styles1}>
+      <Header />
+      <Switch>
+        <Route path="/catalog" render={() => <CatalogFootWear />} />
+        <Route path="/product/:id?" render={() => <Product />} />
+        <Route path="/main-page" render={() => <MainPage />} />
+        <Redirect from="/" to="/main-page" />
+        <Route path="*" render={() => <div>404</div>} />
+      </Switch>
+      <Footer />
     </div>
   );
-}
-
-export default App;
+};
+const mapStateToProps = (state) => {
+  return {
+    isCart: state.cart.isCart,
+    goods: state.goods.goods,
+  };
+};
+export default connect(mapStateToProps, { getGoods })(App);
