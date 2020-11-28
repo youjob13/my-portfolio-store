@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/img/logo.jpg";
 import { setStatus } from "../../store/reducers/cart";
 import Filter from "../Filter/Filter";
-import Cart from "../Informations/Cart";
+import Cart from "../Cart/Cart";
 import styles from "./header.module.scss";
 //library classnames!!!!!!
 
@@ -12,7 +12,7 @@ const classes0 = styles.menuItem + " " + styles.search;
 const classes11 = styles.menuItem + " " + styles.search + " " + styles.active;
 const classes1 = styles.menuItem + " " + styles.cart;
 const classes2 = styles.menuItem + " " + styles.cart + " " + styles.active;
-const Header = (props) => {
+const Header = ({ setStatus, isCart }) => {
   const [isFilteredOpen, setIsFilteredOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -24,11 +24,11 @@ const Header = (props) => {
   };
   const onActivateCart = () => {
     setIsCartOpen(true);
-    props.setStatus(true);
+    setStatus(true);
   };
   const onDeActivateCart = () => {
     setIsCartOpen(false);
-    props.setStatus(false);
+    setStatus(false);
   };
 
   return (
@@ -36,7 +36,7 @@ const Header = (props) => {
       {isFilteredOpen ? (
         <Filter onDeActivateFilter={onDeActivateFilter} />
       ) : null}
-      {props.isCart ? <Cart onDeActivateCart={onDeActivateCart} /> : null}
+      {isCart ? <Cart onDeActivateCart={onDeActivateCart} /> : null}
       <header className={styles.header}>
         <div>
           <NavLink to="/main-page">

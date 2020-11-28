@@ -17,6 +17,7 @@ const App = ({ getGoods, goods, isCart }) => {
   useEffect(() => {
     getGoods();
   }, []);
+  
   if (goods.length === 0) return <Preloader />;
 
   return (
