@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/img/logo.jpg";
-import { getStatus } from "../../store/reducers/cart";
+import { setStatus } from "../../store/reducers/cart";
 import Filter from "../Filter/Filter";
-import InformationsContainer from "../Informations/InformationsContainer";
+import Cart from "../Informations/Cart";
 import styles from "./header.module.scss";
 //library classnames!!!!!!
 
@@ -24,11 +24,11 @@ const Header = (props) => {
   };
   const onActivateCart = () => {
     setIsCartOpen(true);
-    props.getStatus(true);
+    props.setStatus(true);
   };
   const onDeActivateCart = () => {
     setIsCartOpen(false);
-    props.getStatus(false);
+    props.setStatus(false);
   };
 
   return (
@@ -36,9 +36,7 @@ const Header = (props) => {
       {isFilteredOpen ? (
         <Filter onDeActivateFilter={onDeActivateFilter} />
       ) : null}
-      {props.isCart ? (
-        <InformationsContainer onDeActivateCart={onDeActivateCart} />
-      ) : null}
+      {props.isCart ? <Cart onDeActivateCart={onDeActivateCart} /> : null}
       <header className={styles.header}>
         <div>
           <NavLink to="/main-page">
@@ -76,12 +74,12 @@ const Header = (props) => {
         <div className={styles.menu}>
           <div className={isFilteredOpen ? classes11 : classes0}>
             <span onClick={onActivateFilter}>
-              <i class="fas fa-search"></i>
+              <i className="fas fa-search"></i>
             </span>
           </div>
           <div className={isCartOpen ? classes2 : classes1}>
             <span onClick={onActivateCart}>
-              <i class="fas fa-shopping-cart" />
+              <i className="fas fa-shopping-cart" />
             </span>
           </div>
         </div>
@@ -95,4 +93,4 @@ const mapStateToProps = (state) => {
     isFiltered: state.filter.isFiltered,
   };
 };
-export default connect(mapStateToProps, { getStatus })(Header);
+export default connect(mapStateToProps, { setStatus })(Header);

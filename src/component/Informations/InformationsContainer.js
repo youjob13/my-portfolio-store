@@ -91,7 +91,7 @@ const InformationsContainer = ({
         </div>
         <div className={styles.informationsPrivatePolicy}>
           <input id="privateCheckbox" type="checkbox" />
-          <label for="privateCheckbox" />
+          <label htmlFor="privateCheckbox" />
           <p>
             I agree <a href="/">terms of use and privacy</a>
           </p>

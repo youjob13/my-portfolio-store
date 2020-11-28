@@ -24,7 +24,7 @@ $color-productItem_4:#383d68;
         justify-content: center;
         text-align: center;
         background-color: $color-productItem_3;
-        min-height: 400px;
+        min-height: 350px;
         transition: .2s;
         cursor: pointer;
         p {
@@ -44,16 +44,6 @@ $color-productItem_4:#383d68;
     }
     &Item:hover &Description {
         color: $color-productItem_3;
-    }
-
-    &Buttons {
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        position: absolute;
-        top: 4%;
-        right: 0;
-        z-index: 1;
     }
 
     &Name {

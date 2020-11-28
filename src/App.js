@@ -13,19 +13,19 @@ import { getGoods } from "./store/reducers/goods";
 const styles1 = styles.App + " " + styles.cartDeActive;
 const styles2 = styles.App + " " + styles.cartActive;
 
-const App = (props) => {
+const App = ({ getGoods, goods, isCart }) => {
   useEffect(() => {
-    props.getGoods();
+    getGoods();
   }, []);
-  if (props.goods.length === 0) return <Preloader />;
+  if (goods.length === 0) return <Preloader />;
 
   return (
-    <div className={props.isCart ? styles2 : styles1}>
+    <div className={isCart ? styles2 : styles1}>
       <Header />
       <Switch>
         <Route path="/catalog" render={() => <CatalogFootWear />} />
         <Route path="/product/:id?" render={() => <Product />} />
-        <Route path="/main-page" render={() => <MainPage />} />
+        <Route path="/main-page" render={() => <MainPage goods={goods} />} />
         <Redirect from="/" to="/main-page" />
         <Route path="*" render={() => <div>404</div>} />
       </Switch>

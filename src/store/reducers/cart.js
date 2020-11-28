@@ -3,10 +3,14 @@ const ADD_PRODUCT = "ADD_PRODUCT";
 const CHANGE_QUANTITY_PRODUCT = "CHANGE_QUANTITY_PRODUCT";
 const CHANGE_SIZE_PRODUCT = "CHANGE_SIZE_PRODUCT";
 const CHANGE_COLOR_PRODUCT = "CHANGE_COLOR_PRODUCT";
+const CHANGE_DELIVERY_PRODUCT = "CHANGE_DELIVERY_PRODUCT";
+const TOGGLE_CONSENT = "TOGGLE_CONSENT";
 
 let initialState = {
   isCart: false,
   cart: [],
+  delivery: 20,
+  isConsent: false,
 };
 
 export const cart = (state = initialState, action) => {
@@ -15,6 +19,12 @@ export const cart = (state = initialState, action) => {
       return {
         ...state,
         isCart: action.status,
+      };
+    }
+    case TOGGLE_CONSENT: {
+      return {
+        ...state,
+        isConsent: !state.isConsent,
       };
     }
     case ADD_PRODUCT: {
@@ -48,7 +58,6 @@ export const cart = (state = initialState, action) => {
       };
     }
     case CHANGE_COLOR_PRODUCT: {
-      console.log(state.cart[0].currentColor);
       return {
         ...state,
         cart: state.cart.filter((item) => {
@@ -60,6 +69,12 @@ export const cart = (state = initialState, action) => {
         }),
       };
     }
+    case CHANGE_DELIVERY_PRODUCT: {
+      return {
+        ...state,
+        delivery: action.delivery,
+      };
+    }
     default: {
       return {
         ...state,
@@ -69,25 +84,22 @@ export const cart = (state = initialState, action) => {
 };
 
 //action creator
-export const getStatus = (status) => {
-  return {
-    type: TOGGLE_CART,
-    status,
-  };
-};
-export const addProduct = (product) => {
-  return {
-    type: ADD_PRODUCT,
-    product,
-  };
-};
-export const changeQuantityProduct = (orderId, quantity) => {
-  return {
-    type: CHANGE_QUANTITY_PRODUCT,
-    orderId,
-    quantity,
-  };
-};
+export const setStatus = (status) => ({
+  type: TOGGLE_CART,
+  status,
+});
+export const setConsent = () => ({
+  type: TOGGLE_CONSENT,
+});
+export const addProduct = (product) => ({
+  type: ADD_PRODUCT,
+  product,
+});
+export const changeQuantityProduct = (orderId, quantity) => ({
+  type: CHANGE_QUANTITY_PRODUCT,
+  orderId,
+  quantity,
+});
 export const changeSizeProduct = (orderId, size) => ({
   type: CHANGE_SIZE_PRODUCT,
   orderId,
@@ -97,4 +109,8 @@ export const changeColorProduct = (orderId, color) => ({
   type: CHANGE_COLOR_PRODUCT,
   orderId,
   color,
+});
+export const changeDeliveryProduct = (delivery) => ({
+  type: CHANGE_DELIVERY_PRODUCT,
+  delivery,
 });

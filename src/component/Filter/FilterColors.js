@@ -11,7 +11,7 @@ const FilterColors = ({ addColorToFilter, item }) => {
   };
   return (
     <div onClick={onColorsItemClick} className={isColor ? style2 : style1}>
-      <i class="fas fa-check"></i>
+      <i className="fas fa-check"></i>
     </div>
   );
 };

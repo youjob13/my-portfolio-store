@@ -35,6 +35,14 @@ $color-informations_7:#e5e5e5;
     margin-right: 20px;
 
 }
+.active {
+    label {
+        &:before {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    }
+}
 .informations {
     position: fixed;
     right: 0;
@@ -53,24 +61,22 @@ $color-informations_7:#e5e5e5;
             @extend %title-informations_1;
             margin-bottom: 15px;
         }
-        form {
-            h3 {
+        h3 {
             @extend %title-informations_2;
             margin-bottom: 15px;
+        }
+        .informationsInput {
+            width: 100%;
+            display: flex;
+            margin: 8px 0;
+            input,select {
+                @extend %input;
             }
-            .informationsInput {
+            input[type="address"] {
                 width: 100%;
-                display: flex;
-                margin: 8px 0;
-                input,select {
-                    @extend %input;
-                }
-                input[type="address"] {
-                    width: 100%;
-                }
-                select {
-                    @extend %select;
-                }
+            }
+            select {
+                @extend %select;
             }
         }
     }
@@ -203,16 +209,19 @@ $color-informations_7:#e5e5e5;
             border:2px solid $color-informations_7;
             width: 15px;
             height:15px;
-            // active checkbox
+            cursor: pointer;
             &:before {
-                content: '';
-                top:50%;
+                content:'';
+                top: 50%;
                 left: 50%;
-                transform: translate(-50%,-50%);
+                transform: translate(-50%, -50%);
                 position: absolute;
                 background-color: $color-informations_4;
                 width: 9px;
                 height: 9px;
+                opacity: 0;
+                visibility: hidden;
+                transition: .1s;
             }
         }
         p {

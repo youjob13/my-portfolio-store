@@ -8,11 +8,6 @@ const Characteristic = ({ product, addProduct }) => {
   const [productColor, setProductColor] = useState(
     Object.keys(product.colors)[0]
   );
-  Object.keys(product.colors).filter((item) => {
-    if (item === productColor) {
-      console.log(product.colors[productColor]);
-    }
-  });
 
   const onOtherColorClick = (e) => {
     setProductColor(e.currentTarget.id);
@@ -49,7 +44,7 @@ const Characteristic = ({ product, addProduct }) => {
         </div>
       </div>
       <div className={styles.characteristicImage}>
-        <img src={product.characteristic} />
+        <img alt="product characteristic" src={product.characteristic} />
       </div>
       <div className={styles.characteristicProduct}>
         <SelectProductForm
@@ -107,9 +102,12 @@ const SelectProductForm = ({
           </div>
           <div className={styles.characteristicProductMiniImage}>
             {Object.keys(product.colors).map((item) => {
-              if (item === productColor) {
-                return <img src={product.colors[productColor]} />;
-              }
+              if (item === productColor)
+                <img
+                  alt={productColor}
+                  key={item}
+                  src={product.colors[productColor]}
+                />;
             })}
           </div>
           <div className={styles.characteristicProductMiniPrice}>
@@ -120,7 +118,9 @@ const SelectProductForm = ({
             <Field as="select" name="size">
               <option value="SIZE">SIZE</option>
               {product.size.map((item) => (
-                <option value={item}>{item}</option>
+                <option key={item} value={item}>
+                  {item}
+                </option>
               ))}
             </Field>
             <button type="submit">Add To Cart</button>

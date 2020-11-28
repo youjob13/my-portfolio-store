@@ -132,7 +132,7 @@ const Filter = ({
           </div>
         </div>
         <button onClick={onOkFilterBtnClick} className={styles.filterApply}>
-          <i class="fas fa-check"></i>
+          <i className="fas fa-check"></i>
         </button>
       </div>
     </div>

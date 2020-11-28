@@ -15,37 +15,39 @@ const CartItem = ({
     setIsActiveSelectColor(product);
   };
   const onChangeColorBtnClick = (values) => {
-    changeColorProduct(product.orderId, values.colors);
+    changeColorProduct(product.orderId, values.target.value);
+  };
+  const onSelectColorBtnClick = () => {
     setIsActiveSelectColor(null);
+  };
+  const onChangeSizeBtnClick = (values) => {
+    changeSizeProduct(product.orderId, values.target.value);
+  };
+  const onSelectSizeBtnClick = () => {
+    setIsActiveSelectSize(null);
   };
   const onActivateSelectSizeBtnDoubleClick = (product) => {
     setIsActiveSelectSize(product);
   };
-
   const onPlusBtnClick = () => {
     changeQuantityProduct(product.orderId, (product.quantity += 1));
   };
-
   const onMinusBtnClick = () => {
     changeQuantityProduct(product.orderId, (product.quantity -= 1));
-  };
-
-  const onChangeSizeBtnClick = (values) => {
-    changeSizeProduct(product.orderId, values.sizes);
-    setIsActiveSelectSize(null);
   };
 
   return (
     <div key={product.orderId} className={styles.informationsCartItem}>
       <div className={styles.informationsCartItemSum}>
-        <i onClick={onPlusBtnClick} class="fas fa-plus"></i>
+        <i onClick={onPlusBtnClick} className="fas fa-plus"></i>
         <p>{product.quantity}</p>
-        <i onClick={onMinusBtnClick} class="fas fa-minus"></i>
+        <i onClick={onMinusBtnClick} className="fas fa-minus"></i>
       </div>
       <div className={styles.informationsCartItemImg}>
         {isActiveSelectColor === product.orderId ? (
           <div>
             <ChangeColorForm
+              onSelectColorBtnClick={onSelectColorBtnClick}
               onChangeColorBtnClick={onChangeColorBtnClick}
               img={Object.keys(product.colors)}
             />
@@ -68,6 +70,7 @@ const CartItem = ({
         {isActiveSelectSize === product.orderId ? (
           <div>
             <ChangeSizeForm
+              onSelectSizeBtnClick={onSelectSizeBtnClick}
               onChangeSizeBtnClick={onChangeSizeBtnClick}
               size={product.size}
             />
@@ -89,50 +92,40 @@ const CartItem = ({
   );
 };
 
-const ChangeSizeForm = ({ onChangeSizeBtnClick, size }) => (
-  <Formik
-    initialValues={{ sizes: "" }}
-    onSubmit={(values, actions) => {
-      onChangeSizeBtnClick(values);
-    }}
-  >
-    {() => (
-      <Form>
-        <Field as="select" name="sizes">
-          (<option value="Sizes"></option>)
-          {size.map((elem) => (
-            <option key={elem} value={elem}>
-              {elem}
-            </option>
-          ))}
-        </Field>
-        <button type="submit">Select</button>
-      </Form>
-    )}
-  </Formik>
+const ChangeSizeForm = ({
+  onSelectSizeBtnClick,
+  onChangeSizeBtnClick,
+  size,
+}) => (
+  <>
+    <select onChange={onChangeSizeBtnClick} name="sizes">
+      <option value="Sizes"></option>
+      {size.map((elem) => (
+        <option key={elem} value={elem}>
+          {elem}
+        </option>
+      ))}
+    </select>
+    <button onClick={onSelectSizeBtnClick}>Select</button>
+  </>
 );
 
-const ChangeColorForm = ({ onChangeColorBtnClick, img }) => (
-  <Formik
-    initialValues={{ colors: "" }}
-    onSubmit={(values, actions) => {
-      onChangeColorBtnClick(values);
-    }}
-  >
-    {() => (
-      <Form>
-        <Field as="select" name="colors">
-          (<option value="Colors"></option>)
-          {img.map((key) => (
-            <option key={key} value={key}>
-              {key}
-            </option>
-          ))}
-        </Field>
-        <button type="submit">Select</button>
-      </Form>
-    )}
-  </Formik>
+const ChangeColorForm = ({
+  onSelectColorBtnClick,
+  onChangeColorBtnClick,
+  img,
+}) => (
+  <>
+    <select onChange={onChangeColorBtnClick} name="colors">
+      <option value="Colors"></option>
+      {img.map((key) => (
+        <option key={key} value={key}>
+          {key}
+        </option>
+      ))}
+    </select>
+    <button onClick={onSelectColorBtnClick}>Select</button>
+  </>
 );
 
 export default CartItem;

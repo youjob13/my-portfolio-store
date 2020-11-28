@@ -17,7 +17,7 @@ const MainSectionProduct = ({ product, addProduct }) => {
       orderId: Date.now().toString(),
     });
   };
-  
+
   const onScrollColorsImgBtnClick = (value) => {
     if (
       value < 0 &&
@@ -67,13 +67,11 @@ const SliderImgCarousel = ({ img }) => (
     showStatus={false}
     autoPlay
   >
-    {img.map((item) => {
-      return (
-        <div className={styles.carouselWrap}>
-          <img key={item} src={item} />
-        </div>
-      );
-    })}
+    {img.map((item) => (
+      <div key={item} className={styles.carouselWrap}>
+        <img key={item} src={item} />
+      </div>
+    ))}
   </Carousel>
 );
 
@@ -93,10 +91,12 @@ const SelectProductForm = ({
     {() => (
       <Form>
         <div className={styles.productColor}>
-          <p>
-            <span>Colors - </span>
-            {Object.keys(colors).map((key) => key + " / ")}
-          </p>
+          <span>
+            Colors -{" "}
+            {Object.keys(colors).map((key) => (
+              <p key={key}>{key}/</p>
+            ))}
+          </span>
 
           <div className={styles.productOtherItemsInner}>
             <button
@@ -143,7 +143,9 @@ const SelectProductForm = ({
           <Field as="select" name="size">
             <option value="Size">Size</option>
             {size.map((item) => (
-              <option value={item}>{item}</option>
+              <option key={item} value={item}>
+                {item}
+              </option>
             ))}
           </Field>
           <button type="submit">Add To Cart</button>

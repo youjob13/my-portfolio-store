@@ -2,16 +2,13 @@ import React from "react";
 import product from "../../assets/img/mainPage/catalog.png";
 import productWithInfo from "../../assets/img/productsWithInfo/1.jpg";
 import styles from "./mainPage.module.scss";
-import productsStyle from "../common/ProductItem/productItem.module.scss";
 import ProductItem from "../common/ProductItem/ProductItem";
-import { connect } from "react-redux";
-import { getGoods } from "../../store/reducers/goods";
 
-const MainPage = (props) => {
-  if (props.goods === null) return <div>none</div>;
+const MainPage = ({ goods }) => {
+  if (goods === null) return <div>none</div>;
   return (
     <div className={styles.mainPageBlock}>
-      {props.goods.map((item) => (
+      {goods.map((item) => (
         <ProductItem key={item.id} good={item} />
       ))}
       <ProductItemWithType />
@@ -74,8 +71,5 @@ const Brand = () => {
     </div>
   );
 };
-const mapStateToProps = (state) => ({
-  goods: state.goods.goods,
-});
 
-export default connect(mapStateToProps, getGoods)(MainPage);
+export default MainPage;

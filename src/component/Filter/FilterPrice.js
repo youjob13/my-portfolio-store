@@ -9,7 +9,7 @@ const FilterPrice = ({ addPriceToFilter, price }) => {
     addPriceToFilter(e.target);
   };
   return (
-    <div class={styles.priceSlider}>
+    <div className={styles.priceSlider}>
       <span>
         from
         <input
@@ -55,9 +55,9 @@ const FilterPrice = ({ addPriceToFilter, price }) => {
           x2="300"
           y2="0"
           stroke="#212121"
-          stroke-width="12"
-          stroke-dasharray="1 28"
-        ></line>
+          strokeWidth="12"
+          strokeDasharray="1 28"
+        />
       </svg>
     </div>
   );

@@ -14,10 +14,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 let firestore = firebase.firestore();
-// db-for-store-test.appspot.com/
-// var storageRef = firebase.storage().ref();
-// const img = storageRef.child("young-1_orange.png");
-// console.log(img);
+
 const db = firestore.collection("goods").doc("bbh8FnoADhfhOo4yzg09");
 export const goodsAPI = {
   getGoods() {

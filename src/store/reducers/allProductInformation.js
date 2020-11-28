@@ -47,7 +47,7 @@ export const allProductInformation = (state = initialState, action) => {
 };
 
 //action creator
-export const getStatus = (status) => {
+export const setStatus = (status) => {
   return {
     type: TOGGLE_CART,
     status,

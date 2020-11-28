@@ -16,7 +16,7 @@ $color-product_6:#333333;
 }
 .slide {
     li {
-        background: #fff !important;
+        background: $color-product_1 !important;
     }
 }
 button {
@@ -114,11 +114,11 @@ button {
         text-transform: uppercase;
         span {
             color:$color-product_3;
+            display: flex;
         }
         p {
             color:$color-product_4;
             margin-bottom: 15px;
-            margin-top: 25px;
         }
     }
 
