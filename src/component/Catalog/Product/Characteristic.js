@@ -8,7 +8,6 @@ const Characteristic = ({ product, addProduct }) => {
   const [productColor, setProductColor] = useState(
     Object.keys(product.colors)[0]
   );
-
   const onOtherColorClick = (e) => {
     setProductColor(e.currentTarget.id);
   };
@@ -44,7 +43,7 @@ const Characteristic = ({ product, addProduct }) => {
         </div>
       </div>
       <div className={styles.characteristicImage}>
-        <img alt="product characteristic" src={product.characteristic} />
+        <img alt="product photo" src={product.characteristic} />
       </div>
       <div className={styles.characteristicProduct}>
         <SelectProductForm
@@ -103,11 +102,14 @@ const SelectProductForm = ({
           <div className={styles.characteristicProductMiniImage}>
             {Object.keys(product.colors).map((item) => {
               if (item === productColor)
-                <img
-                  alt={productColor}
-                  key={item}
-                  src={product.colors[productColor]}
-                />;
+                return (
+                  <img
+                    id={item}
+                    alt={productColor}
+                    key={item}
+                    src={product.colors[productColor]}
+                  />
+                );
             })}
           </div>
           <div className={styles.characteristicProductMiniPrice}>

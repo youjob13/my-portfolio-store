@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/img/logo.jpg";
@@ -6,44 +6,26 @@ import { setStatus } from "../../store/reducers/cart";
 import Filter from "../Filter/Filter";
 import Cart from "../Cart/Cart";
 import styles from "./header.module.scss";
-//library classnames!!!!!!
+import cn from "classnames";
+import { setFilterStatus } from "../../store/reducers/filter";
 
-const classes0 = styles.menuItem + " " + styles.search;
-const classes11 = styles.menuItem + " " + styles.search + " " + styles.active;
-const classes1 = styles.menuItem + " " + styles.cart;
-const classes2 = styles.menuItem + " " + styles.cart + " " + styles.active;
-const Header = ({ setStatus, isCart }) => {
-  const [isFilteredOpen, setIsFilteredOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  const onActivateFilter = () => {
-    setIsFilteredOpen(true);
+const Header = ({ setStatus, isCart, isFiltered, setFilterStatus }) => {
+  const onFilterBtnClick = () => {
+    setFilterStatus();
   };
-  const onDeActivateFilter = () => {
-    setIsFilteredOpen(false);
+  const onCartBtnClick = () => {
+    setStatus();
   };
-  const onActivateCart = () => {
-    setIsCartOpen(true);
-    setStatus(true);
-  };
-  const onDeActivateCart = () => {
-    setIsCartOpen(false);
-    setStatus(false);
-  };
-
   return (
     <>
-      {isFilteredOpen ? (
-        <Filter onDeActivateFilter={onDeActivateFilter} />
-      ) : null}
-      {isCart ? <Cart onDeActivateCart={onDeActivateCart} /> : null}
+      {isFiltered ? <Filter onFilterBtnClick={onFilterBtnClick} /> : null}
+      {isCart ? <Cart onCartBtnClick={onCartBtnClick} /> : null}
       <header className={styles.header}>
         <div>
           <NavLink to="/main-page">
             <img src={logo} />
           </NavLink>
         </div>
-
         <nav className={styles.navbar} role="navigation">
           <ul className={styles.navList}>
             <li className={styles.navItem}>
@@ -70,15 +52,22 @@ const Header = ({ setStatus, isCart }) => {
             <option>Clearance</option>
           </select>
         </nav>
-
         <div className={styles.menu}>
-          <div className={isFilteredOpen ? classes11 : classes0}>
-            <span onClick={onActivateFilter}>
+          <div
+            className={cn(styles.menuItem, styles.search, {
+              [styles.active]: isFiltered,
+            })}
+          >
+            <span onClick={onFilterBtnClick}>
               <i className="fas fa-search"></i>
             </span>
           </div>
-          <div className={isCartOpen ? classes2 : classes1}>
-            <span onClick={onActivateCart}>
+          <div
+            className={cn(styles.menuItem, styles.cart, {
+              [styles.active]: isCart,
+            })}
+          >
+            <span onClick={onCartBtnClick}>
               <i className="fas fa-shopping-cart" />
             </span>
           </div>
@@ -93,4 +82,5 @@ const mapStateToProps = (state) => {
     isFiltered: state.filter.isFiltered,
   };
 };
-export default connect(mapStateToProps, { setStatus })(Header);
+
+export default connect(mapStateToProps, { setStatus, setFilterStatus })(Header);

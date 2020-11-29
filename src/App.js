@@ -9,19 +9,23 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import Preloader from "./component/common/Preloader/Preloader";
 import { getGoods } from "./store/reducers/goods";
-
-const styles1 = styles.App + " " + styles.cartDeActive;
-const styles2 = styles.App + " " + styles.cartActive;
+import cn from "classnames";
 
 const App = ({ getGoods, goods, isCart }) => {
   useEffect(() => {
     getGoods();
   }, []);
-  
+
   if (goods.length === 0) return <Preloader />;
 
   return (
-    <div className={isCart ? styles2 : styles1}>
+    <div
+      className={cn(
+        styles.App,
+        { [styles.cartDeActive]: isCart === false },
+        { [styles.cartActive]: isCart === true }
+      )}
+    >
       <Header />
       <Switch>
         <Route path="/catalog" render={() => <CatalogFootWear />} />
@@ -34,10 +38,8 @@ const App = ({ getGoods, goods, isCart }) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    isCart: state.cart.isCart,
-    goods: state.goods.goods,
-  };
-};
+const mapStateToProps = (state) => ({
+  isCart: state.cart.isCart,
+  goods: state.goods.goods,
+});
 export default connect(mapStateToProps, { getGoods })(App);

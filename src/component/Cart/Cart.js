@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./informations.module.scss";
 import { connect } from "react-redux";
 import {
@@ -7,26 +7,24 @@ import {
   changeDeliveryProduct,
   changeSizeProduct,
   setConsent,
+  deleteQuantityProduct,
 } from "../../store/reducers/cart";
 import CartItem from "./CartItem";
 import { Formik, Form, Field } from "formik";
-
-const style0 = styles.informationsPrivatePolicy;
-const style1 = styles.informationsPrivatePolicy + " " + styles.active;
+import cn from "classnames";
 
 const Cart = ({
   changeQuantityProduct,
   changeSizeProduct,
-  onDeActivateCart,
+  onCartBtnClick,
   changeColorProduct,
   changeDeliveryProduct,
   cart,
+  deleteQuantityProduct,
   delivery,
   setConsent,
   isConsent,
 }) => {
-  const [isCheck, setIsCheck] = useState(true);
-
   const onConfirmBtnClick = (values) => {
     alert(
       "First Name: " +
@@ -44,7 +42,7 @@ const Cart = ({
         ", city: " +
         values.city
     );
-    onDeActivateCart();
+    onCartBtnClick();
   };
   const onDeliveryModeChange = (e) => {
     changeDeliveryProduct(e.target.value);
@@ -109,6 +107,7 @@ const Cart = ({
               <div>
                 {cart.map((item) => (
                   <CartItem
+                    deleteQuantityProduct={deleteQuantityProduct}
                     key={item.orderId}
                     changeColorProduct={changeColorProduct}
                     changeSizeProduct={changeSizeProduct}
@@ -136,9 +135,9 @@ const Cart = ({
                 </div>
               </div>
               <div
-                className={
-                  isConsent ? style1 : styles.informationsPrivatePolicy
-                }
+                className={cn(styles.informationsPrivatePolicy, {
+                  [styles.active]: isConsent,
+                })}
               >
                 <input
                   onClick={onCheckboxClick}
@@ -203,4 +202,5 @@ export default connect(mapStateToProps, {
   changeColorProduct,
   changeDeliveryProduct,
   setConsent,
+  deleteQuantityProduct,
 })(Cart);

@@ -5,6 +5,7 @@ const CHANGE_SIZE_PRODUCT = "CHANGE_SIZE_PRODUCT";
 const CHANGE_COLOR_PRODUCT = "CHANGE_COLOR_PRODUCT";
 const CHANGE_DELIVERY_PRODUCT = "CHANGE_DELIVERY_PRODUCT";
 const TOGGLE_CONSENT = "TOGGLE_CONSENT";
+const DELETE_QUANTITY_PRODUCT = "DELETE_QUANTITY_PRODUCT";
 
 let initialState = {
   isCart: false,
@@ -18,7 +19,7 @@ export const cart = (state = initialState, action) => {
     case TOGGLE_CART: {
       return {
         ...state,
-        isCart: action.status,
+        isCart: !state.isCart,
       };
     }
     case TOGGLE_CONSENT: {
@@ -43,6 +44,12 @@ export const cart = (state = initialState, action) => {
           }
           return item;
         }),
+      };
+    }
+    case DELETE_QUANTITY_PRODUCT: {
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.orderId !== action.orderId),
       };
     }
     case CHANGE_SIZE_PRODUCT: {
@@ -84,9 +91,8 @@ export const cart = (state = initialState, action) => {
 };
 
 //action creator
-export const setStatus = (status) => ({
+export const setStatus = () => ({
   type: TOGGLE_CART,
-  status,
 });
 export const setConsent = () => ({
   type: TOGGLE_CONSENT,
@@ -99,6 +105,10 @@ export const changeQuantityProduct = (orderId, quantity) => ({
   type: CHANGE_QUANTITY_PRODUCT,
   orderId,
   quantity,
+});
+export const deleteQuantityProduct = (orderId) => ({
+  type: DELETE_QUANTITY_PRODUCT,
+  orderId,
 });
 export const changeSizeProduct = (orderId, size) => ({
   type: CHANGE_SIZE_PRODUCT,

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { setFilter } from "../../store/reducers/filter";
 import styles from "./filter.module.scss";
@@ -10,7 +10,7 @@ import FilterPrice from "./FilterPrice";
 
 const Filter = ({
   goods,
-  onDeActivateFilter,
+  onFilterBtnClick,
   setFilter,
   allProductInformation,
 }) => {
@@ -46,6 +46,7 @@ const Filter = ({
         : color.filter((item) => item !== value)
     );
   };
+
   const addCategoryToFilter = (value) => {
     setCategory(
       !category.includes(value)
@@ -53,6 +54,7 @@ const Filter = ({
         : category.filter((item) => item !== value)
     );
   };
+
   const addBrandsToFilter = (value) => {
     setBrand(
       !brand.includes(value)
@@ -60,6 +62,7 @@ const Filter = ({
         : brand.filter((item) => item !== value)
     );
   };
+
   const addSizeToFilter = (value) => {
     setSize(
       !size.includes(value)
@@ -67,8 +70,9 @@ const Filter = ({
         : size.filter((item) => item !== value)
     );
   };
+  
   const onOkFilterBtnClick = () => {
-    onDeActivateFilter();
+    onFilterBtnClick();
     setFilter(filteredGoods);
   };
 
