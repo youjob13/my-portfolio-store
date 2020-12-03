@@ -34,7 +34,7 @@ const Characteristic = ({ product, addProduct }) => {
         </div>
         <div className={styles.characteristicBenefits}>
           <h3>Benefits</h3>
-          {Object.keys(product.advantages).map((key) => (
+          {product.advantages && Object.keys(product.advantages).map((key) => (
             <div key={key}>
               <h2>{key}</h2>
               <p>{product.advantages[key]}</p>

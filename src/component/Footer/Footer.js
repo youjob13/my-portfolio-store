@@ -1,11 +1,6 @@
 import React from "react";
 import styles from "./footer.module.scss";
 import img from "../../assets/img/logo.jpg";
-import youtube from "../../assets/img/footer/you-tube.png";
-import instagram from "../../assets/img/footer/instagram.png";
-import twitter from "../../assets/img/footer/twitter.png";
-import facebook from "../../assets/img/footer/facebook.png";
-import pinterest from "../../assets/img/footer/pinterest.png";
 
 const Footer = () => {
   return (

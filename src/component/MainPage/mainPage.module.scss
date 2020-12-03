@@ -69,7 +69,7 @@ $color-mainPage_4:#70d67b;
 }
 //product item with info
 .ProductItemWithInfo{
-    grid-column: 1/3;
+    grid-column: 2/-2;
     background-color:$color-mainPage_1;
     display: flex;
     .img {

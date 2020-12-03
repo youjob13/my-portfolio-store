@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./informations.module.scss";
-import { Formik, Form, Field } from "formik";
 
 const CartItem = ({
   changeColorProduct,
@@ -56,12 +55,17 @@ const CartItem = ({
             />
           </div>
         ) : (
-          <img
-            onDoubleClick={() => {
-              onActivateSelectColorBtnDoubleClick(product.orderId);
-            }}
-            src={product.colors[product.currentColor]}
-          />
+          <>
+            <img src={product.colors[product.currentColor]} />
+            <p
+              className={styles.buttonChangeColor}
+              onClick={() => {
+                onActivateSelectColorBtnDoubleClick(product.orderId);
+              }}
+            >
+              Change Color
+            </p>
+          </>
         )}
       </div>
       <div className={styles.informationsCartItemTitle}>
@@ -80,7 +84,8 @@ const CartItem = ({
           </div>
         ) : (
           <span
-            onDoubleClick={() => {
+            className={styles.buttonChangeSize}
+            onClick={() => {
               onActivateSelectSizeBtnDoubleClick(product.orderId);
             }}
           >
@@ -109,7 +114,7 @@ const ChangeSizeForm = ({
         </option>
       ))}
     </select>
-    <button onClick={onSelectSizeBtnClick}>Select</button>
+    <button className={styles.selectBtn} onClick={onSelectSizeBtnClick}>Select</button>
   </>
 );
 
@@ -127,7 +132,9 @@ const ChangeColorForm = ({
         </option>
       ))}
     </select>
-    <button onClick={onSelectColorBtnClick}>Select</button>
+    <button className={styles.selectBtn} onClick={onSelectColorBtnClick}>
+      Select
+    </button>
   </>
 );
 

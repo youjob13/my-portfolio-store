@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
@@ -9,7 +9,6 @@ import Social from "./Social";
 import { getGoods } from "../../../store/reducers/goods";
 
 const Product = (props) => {
-  
   let productId = props.match.params.id;
   if (productId === null || props.goods.length === 0) return <div>none</div>;
   const product = props.goods.find((item) => item.id == productId);

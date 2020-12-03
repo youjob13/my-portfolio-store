@@ -8,11 +8,11 @@ const MainPage = ({ goods }) => {
   if (goods === null) return <div>none</div>;
   return (
     <div className={styles.mainPageBlock}>
+      <ProductItemWithType />
+      <ProductItemWithInfo />
       {goods.map((item) => (
         <ProductItem key={item.id} good={item} />
       ))}
-      <ProductItemWithType />
-      <ProductItemWithInfo />
       <Brand />
     </div>
   );

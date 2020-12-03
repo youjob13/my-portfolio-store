@@ -26,6 +26,8 @@ const Cart = ({
   isConsent,
 }) => {
   const onConfirmBtnClick = (values) => {
+    console.log(values);
+    if (!isConsent) return alert("check the checkbox please");
     alert(
       "First Name: " +
         values.firstName +
@@ -88,6 +90,7 @@ const Cart = ({
             >
               <h3>Delivery Mode</h3>
               <Field
+                required
                 onChange={onDeliveryModeChange}
                 as="select"
                 name="delivery"
@@ -166,26 +169,26 @@ const Informations = () => (
     <h2>Informations</h2>
     <h3>Personal Informations</h3>
     <div className={styles.informationsInput}>
-      <Field as="select" name="country" placeholder="Country">
+      <Field required as="select" name="country" placeholder="Country">
         <option value="England">England</option>
         <option value="Japan">Japan</option>
         <option value="Germany">Germany</option>
       </Field>
     </div>
     <div className={styles.informationsInput}>
-      <Field type="text" name="firstName" placeholder="First name" />
-      <Field type="text" name="secondName" placeholder="Second name" />
+      <Field required type="text" name="firstName" placeholder="First name" />
+      <Field required type="text" name="secondName" placeholder="Second name" />
     </div>
     <div className={styles.informationsInput}>
-      <Field type="address" name="address" placeholder="Address" />
+      <Field required type="address" name="address" placeholder="Address" />
     </div>
     <div className={styles.informationsInput}>
-      <Field type="text" name="postalCode" placeholder="Postal code" />
-      <Field type="text" name="city" placeholder="City" />
+      <Field required type="text" name="postalCode" placeholder="Postal code" />
+      <Field required type="text" name="city" placeholder="City" />
     </div>
     <div className={styles.informationsInput}>
-      <Field type="email" name="email" placeholder="Email" />
-      <Field type="tel" name="phone" placeholder="Phone" />
+      <Field required type="email" name="email" placeholder="Email" />
+      <Field required type="tel" name="phone" placeholder="Phone" />
     </div>
   </div>
 );

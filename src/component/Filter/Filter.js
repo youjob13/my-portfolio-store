@@ -24,7 +24,7 @@ const Filter = ({
     (item) =>
       (!category.length || category.includes(item.category)) &&
       (!brand.length || brand.includes(item.brands)) &&
-      (!size.length || size.includes(item.size.find((elem) => elem == size))) &&
+      (!size.length || size.includes(item.size.find((e) => e == size))) &&
       (!color.length ||
         color.includes(Object.keys(item.colors).find((key) => key == color))) &&
       (!price[0] || price[0] <= item.price) &&
@@ -61,6 +61,12 @@ const Filter = ({
         ? [...brand, value]
         : brand.filter((item) => item !== value)
     );
+    sessionStorage.setItem(
+      "brands",
+      !brand.includes(value)
+        ? [...brand, value]
+        : brand.filter((item) => item !== value)
+    );
   };
 
   const addSizeToFilter = (value) => {
@@ -70,7 +76,7 @@ const Filter = ({
         : size.filter((item) => item !== value)
     );
   };
-  
+
   const onOkFilterBtnClick = () => {
     onFilterBtnClick();
     setFilter(filteredGoods);

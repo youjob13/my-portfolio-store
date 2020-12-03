@@ -43,6 +43,20 @@ $color-informations_7:#e5e5e5;
         }
     }
 }
+.selectBtn {
+    font-size: 15px;
+}
+.buttonChangeSize {
+    cursor: pointer;
+}
+.buttonChangeColor {
+    background: antiquewhite;
+    padding: 3px 4px;
+    color: #333;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+}
 .informations {
     position: fixed;
     right: 0;
@@ -141,6 +155,9 @@ $color-informations_7:#e5e5e5;
                 i {
                     cursor: pointer;
                 }
+            }
+            &Img {
+                text-align:center;
             }
             img {
                 width: 70px;

@@ -4,9 +4,14 @@ import styles from "./mainSectionProduct.module.scss";
 import { addProduct } from "../../../store/reducers/cart";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import cn from "classnames";
 import { Carousel } from "react-responsive-carousel";
+
 const MainSectionProduct = ({ product, addProduct }) => {
   const [translateX, setTranslateX] = useState(0);
+  const [isActiveColor, setActiveColor] = useState(
+    Object.keys(product.colors)[0]
+  );
 
   const onAddToCartBtnClick = (values) => {
     addProduct({
@@ -46,6 +51,8 @@ const MainSectionProduct = ({ product, addProduct }) => {
           <p className={styles.productPrice}>$ {product.price}.00</p>
         </div>
         <SelectProductForm
+          setActiveColor={setActiveColor}
+          isActiveColor={isActiveColor}
           translateX={translateX}
           onScrollColorsImgBtnClick={onScrollColorsImgBtnClick}
           onAddToCartBtnClick={onAddToCartBtnClick}
@@ -80,6 +87,8 @@ const SelectProductForm = ({
   onScrollColorsImgBtnClick,
   onAddToCartBtnClick,
   size,
+  isActiveColor,
+  setActiveColor,
   colors,
 }) => (
   <Formik
@@ -122,7 +131,14 @@ const SelectProductForm = ({
                       name="color"
                       value={key}
                     />
-                    <div className={styles.productOtherItem}>
+                    <div
+                      className={cn(styles.productOtherItem, {
+                        [styles.activeColor]: isActiveColor === key,
+                      })}
+                      onClick={() => {
+                        setActiveColor(key);
+                      }}
+                    >
                       <img src={colors[key]} />
                     </div>
                   </label>

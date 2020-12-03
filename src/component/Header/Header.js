@@ -58,9 +58,11 @@ const Header = ({ setStatus, isCart, isFiltered, setFilterStatus }) => {
               [styles.active]: isFiltered,
             })}
           >
-            <span onClick={onFilterBtnClick}>
-              <i className="fas fa-search"></i>
-            </span>
+            <NavLink to="/catalog">
+              <span onClick={onFilterBtnClick}>
+                <i className="fas fa-search"></i>
+              </span>
+            </NavLink>
           </div>
           <div
             className={cn(styles.menuItem, styles.cart, {
