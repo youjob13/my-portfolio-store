@@ -147,6 +147,7 @@ $color-mainPage_4:#70d67b;
     }
     .ProductItemWithInfo {
         grid-row:1;
+        grid-column: 2/-1;
     }
     .productItemWithType {
       .img {
@@ -163,6 +164,9 @@ $color-mainPage_4:#70d67b;
 @media (max-width:930px) {
     .mainPageBlock {
         grid-template-columns: 1fr 1fr;
+    }
+    .ProductItemWithInfo {
+        grid-column: 1/-1;
     }
     .Brand {
         grid-column:2;

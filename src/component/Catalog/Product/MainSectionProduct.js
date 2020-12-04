@@ -24,17 +24,32 @@ const MainSectionProduct = ({ product, addProduct }) => {
   };
 
   const onScrollColorsImgBtnClick = (value) => {
-    if (
-      value < 0 &&
-      translateX / value < Object.keys(product.colors).length - 3
-    ) {
-      setTranslateX(translateX + value);
-    } else if (translateX === 0 && value > 0) {
-      setTranslateX((Object.keys(product.colors).length - 3) * -value);
-    } else if (translateX < 0 && value > 0) {
-      setTranslateX(translateX + value);
-    } else if (value < 0) {
-      setTranslateX(0);
+    if (document.body.clientWidth > 1440) {
+      if (
+        value < 0 &&
+        translateX / value < Object.keys(product.colors).length - 3
+      ) {
+        setTranslateX(translateX + value);
+      } else if (translateX === 0 && value > 0) {
+        setTranslateX((Object.keys(product.colors).length - 3) * -value);
+      } else if (translateX < 0 && value > 0) {
+        setTranslateX(translateX + value);
+      } else if (value < 0) {
+        setTranslateX(0);
+      }
+    } else {
+      if (
+        value < 0 &&
+        translateX / value < Object.keys(product.colors).length - 2
+      ) {
+        setTranslateX(translateX + value);
+      } else if (translateX === 0 && value > 0) {
+        setTranslateX((Object.keys(product.colors).length - 2) * -value);
+      } else if (translateX < 0 && value > 0) {
+        setTranslateX(translateX + value);
+      } else if (value < 0) {
+        setTranslateX(0);
+      }
     }
   };
 

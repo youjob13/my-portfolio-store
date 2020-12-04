@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./footer.module.scss";
 import img from "../../assets/img/logo.jpg";
+import Navigation from "../common/Navigation/Navigation";
 
 const Footer = () => {
   return (
@@ -9,29 +10,37 @@ const Footer = () => {
         <div className={styles.footerNavLogo}>
           <img src={img} />
         </div>
+        <Navigation styles={styles} />
         <nav>
           <ul>
-            <li>Footwear</li>
-            <li>clothing</li>
-            <li>accessories</li>
-            <li>brands</li>
-            <li>clearance</li>
+            <li>
+              <a>About</a>
+            </li>
+            <li>
+              <a>Contact us</a>
+            </li>
+            <li>
+              <a>Support</a>
+            </li>
+            <li>
+              <a>Store Locator</a>
+            </li>
+            <li>
+              <a>Press Room</a>
+            </li>
           </ul>
         </nav>
         <nav>
           <ul>
-            <li>About</li>
-            <li>Contact us</li>
-            <li>Support</li>
-            <li>Store Locator</li>
-            <li>Press Room</li>
-          </ul>
-        </nav>
-        <nav>
-          <ul>
-            <li>Website Terms</li>
-            <li>Select Country</li>
-            <li>Source Code</li>
+            <li>
+              <a>Website Terms</a>
+            </li>
+            <li>
+              <a>Select Country</a>
+            </li>
+            <li>
+              <a>Source Code</a>
+            </li>
           </ul>
         </nav>
         <div className={styles.socialNetwork}>

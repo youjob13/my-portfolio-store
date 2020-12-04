@@ -128,7 +128,7 @@ button {
         display: flex;
         &Wrapper {
             overflow-x: hidden;
-            width: 54%;
+            width: 53%;
         }
         &Inner {
             display: flex;
@@ -192,12 +192,17 @@ button {
         border-top-left-radius: 10px;
     }
 }
+@media (max-width:1440px) {
+    .productOtherItemsInner {
+        width: 480px;
+    }
+}
 @media (max-width:1000px) {
     .product {
         grid-template-columns:1fr 1fr;
         &Info {
             display: grid;
-            grid-template-rows: 1fr 7fr 2fr;
+            grid-template-rows: 1fr 1fr 2fr;
             align-items: center;
         }
 

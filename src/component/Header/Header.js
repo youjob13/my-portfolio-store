@@ -8,6 +8,7 @@ import Cart from "../Cart/Cart";
 import styles from "./header.module.scss";
 import cn from "classnames";
 import { setFilterStatus } from "../../store/reducers/filter";
+import Navigation from "../common/Navigation/Navigation";
 
 const Header = ({ setStatus, isCart, isFiltered, setFilterStatus }) => {
   const onFilterBtnClick = () => {
@@ -26,32 +27,7 @@ const Header = ({ setStatus, isCart, isFiltered, setFilterStatus }) => {
             <img src={logo} />
           </NavLink>
         </div>
-        <nav className={styles.navbar} role="navigation">
-          <ul className={styles.navList}>
-            <li className={styles.navItem}>
-              <NavLink to="/catalog">Footwear</NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <a href="/">Clothing</a>
-            </li>
-            <li className={styles.navItem}>
-              <a href="/">Accessories</a>
-            </li>
-            <li className={styles.navItem}>
-              <a href="/">Brands</a>
-            </li>
-            <li className={styles.navItem}>
-              <a href="/">Clearance</a>
-            </li>
-          </ul>
-          <select className={styles.navSelect}>
-            <option>Footwear</option>
-            <option>Clothing</option>
-            <option>Accessories</option>
-            <option>Brands</option>
-            <option>Clearance</option>
-          </select>
-        </nav>
+        <Navigation styles={styles} />
         <div className={styles.menu}>
           <div
             className={cn(styles.menuItem, styles.search, {

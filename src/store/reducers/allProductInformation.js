@@ -1,7 +1,7 @@
 const TOGGLE_CART = "TOGGLE_CART";
 
 let initialState = {
-  category: ["Footwear", "Clothing", "Accessories"],
+  category: ["Footwear", "Olympian", "Accessories"],
   size: [4, 5, 6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 12],
   colors: [
     "red",
